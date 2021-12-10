@@ -7,12 +7,12 @@ import (
 
 func main() {
 
-	// 序列化 结构体
+	// 序列化 结构体( 注意：  冒号前后 不能有空格)
 	type Person struct {
-		Name    string
-		Age     int
-		IdCard  string
-		Address string
+		Name    string `json:"name"`
+		Age     int    `json:"age"`
+		IdCard  string `json:"id_card"`
+		Address string `json:"address"`
 	}
 
 	a := &Person{Name: "xxx", Age: 16, IdCard: "12345678909887676", Address: "beijing"}
@@ -55,3 +55,4 @@ func main() {
 	fmt.Println(string(arrStr))
 
 }
+
