@@ -24,6 +24,19 @@ func main() {
 	}
 
 	fmt.Println(string(jby))
+	
+	// 反序列化
+	var newPerson Person
+
+	jbyStr := string(jby)
+
+	err = json.Unmarshal([]byte(jbyStr), &newPerson)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println(newPerson)
 
 	// 序列化 map
 
