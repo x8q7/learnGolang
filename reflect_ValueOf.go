@@ -1,18 +1,27 @@
 package main
 
 import (
-	"fmt"
 	"reflect"
 )
 
 func main() {
-	var x float64 = 3.4
-	p := reflect.ValueOf(&x) // Note: take the address of x.
-	p = p.Elem()
+	type T struct {
+		A int
+		B string
+	}
+	t := T{23, "skidoo"}
+	s := reflect.ValueOf(&t).Elem()
+	// typeOfT := s.Type() // 此处 转成 reflect.Type 类型
+	for i := 0; i < s.NumField(); i++ {
+		// f 是 reflect.Value 类型 的 字段的 value
+		f := s.Field(i)
 
-	p.SetFloat(1.2)
+		if f.Kind() == reflect.Int {
+			f.SetInt(10)
+		}
 
-	fmt.Println("type of p:", p.Type())
-	fmt.Println("settability of p:", p.CanSet())
-	fmt.Println("reInterface", p.Interface())
+		if f.Kind() == reflect.String {
+			f.SetString("hi")
+		}
+	}
 }
